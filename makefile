@@ -98,7 +98,7 @@ INC = libft.h
 all: $(NAME)
 
 $(NAME): $(OBJ_PATH) $(INC_S) $(OBJ_S) $(SRC_S)
-	ar rc $(NAME) $(OBJ)
+	ar rc $(NAME) $(OBJ_S)
 	ranlib $(NAME)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH) $(INC_S)
