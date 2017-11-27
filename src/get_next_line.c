@@ -6,11 +6,11 @@
 /*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 21:53:49 by tcassier          #+#    #+#             */
-/*   Updated: 2017/11/27 08:21:22 by tcassier         ###   ########.fr       */
+/*   Updated: 2017/11/27 08:52:31 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static t_stock		*check_fd(t_stock **begin_list, const int fd)
 {
