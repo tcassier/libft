@@ -6,7 +6,7 @@
 /*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 10:40:30 by tcassier          #+#    #+#             */
-/*   Updated: 2017/11/27 07:45:53 by tcassier         ###   ########.fr       */
+/*   Updated: 2017/11/28 00:50:53 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	ft_count_word(char const *s, char c)
 
 static int	ft_len(char const *s, char c)
 {
-	int len;
+	int		len;
 
 	len = 0;
 	while (*s != c && *s != '\0')
