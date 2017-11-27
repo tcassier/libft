@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tcassier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/12 19:23:42 by tcassier          #+#    #+#              #
-#     Updated: 2017/11/12 19:40:03 by tcassier         ###   ########.fr       #
+#    Created: 2017/11/27 11:19:07 by tcassier          #+#    #+#              #
+#    Updated: 2017/11/28 00:43:57 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = gcc $(CFLAGS)
 CFLAGS = -Wall -Wextra -Werror
 
 SRC_PATH = ./src
-SRC_S = $(addprefix $(SRC_PATH)/, $(SRC))
+SRCS = $(addprefix $(SRC_PATH)/, $(SRC))
 SRC = ft_atoi.c        \
 	  ft_bzero.c       \
 	  ft_isalnum.c     \
@@ -88,30 +88,44 @@ SRC = ft_atoi.c        \
 	  get_next_line.c
 
 OBJ_PATH = ./obj
-OBJ_S = $(addprefix $(OBJ_PATH)/, $(OBJ))
+OBJS = $(addprefix $(OBJ_PATH)/, $(OBJ))
 OBJ = $(SRC:.c=.o)
 
 INC_PATH = ./includes
-INC_S = $(addprefix $(INC_PATH)/, $(INC))
+INCS = $(addprefix $(INC_PATH)/, $(INC))
 INC = libft.h
 
 all: $(NAME)
 
-$(NAME): $(OBJ_PATH) $(INC_S) $(OBJ_S) $(SRC_S)
-	ar rc $(NAME) $(OBJ_S)
-	ranlib $(NAME)
+$(NAME): $(OBJ_PATH) $(INCS) $(OBJS) $(SRCS)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
+	@echo "                                                        "
+	@echo "                       # ***************************** #"
+	@echo "                       #                               #"
+	@echo "                       #           :::      ::::::::   #"
+	@echo "                       #         :+:      :+:    :+:   #"
+	@echo "                       #       +:+ +:+         +:+     #"
+	@echo "                       #     +#+  +:+       +#+        #"
+	@echo "                       #   +#+#+#+#+#+   +#+           #"
+	@echo "                       #        #+#    #+#             #"
+	@echo "                       #       ###   ########.fr       #"
+	@echo "                       #                               #"
+	@echo "                       # ***************************** #"
+	@echo "                                                        "
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH) $(INC_S)
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH) $(INCS)
 	$(CC) -c $< -o $@ -I $(INC_PATH)
 
 $(OBJ_PATH):
-	mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)
 
 clean:
-	rm -f $(OBJ_S)
-	rm -rf $(OBJ_PATH)
+	@rm -f $(OBJS)
+	@rm -rf $(OBJ_PATH)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

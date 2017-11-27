@@ -6,7 +6,7 @@
 /*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 21:53:49 by tcassier          #+#    #+#             */
-/*   Updated: 2017/11/27 08:52:31 by tcassier         ###   ########.fr       */
+/*   Updated: 2017/11/27 10:59:22 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,23 +113,24 @@ int					get_next_line(const int fd, char **line)
 	char			buffer[BUFF_SIZE + 1];
 	int				check;
 
-	if ((!line || fd < 0) || !(file = check_fd(&begin_list, fd)))
-		return (-1);
-	if (!(check = rest_instance(file, line)))
+	if ((!line || fd < 0) || !(file = check_fd(&begin_list, fd)) ||
+	!(check = rest_instance(file, line)))
 		return (-1);
 	if (check == 1)
 		return (1);
 	while ((check = read(fd, buffer, BUFF_SIZE)) > 0)
 	{
 		buffer[check] = '\0';
-		if (!(check = get_line(buffer, file, line)))
-			return (-1);
-		if (check == 1)
-			return (1);
+		if (!(check = get_line(buffer, file, line)) || check == 1)
+			return (check == -1 ? -1 : 1);
 	}
 	if (*line && *line[0] != '\0')
 		return (1);
 	else if (check == 0)
-		return (!(*line = ft_strnew(0)) ? -1 : 0);
+	{
+		free(*line);
+		*line = NULL;
+		return (0);
+	}
 	return (-1);
 }
