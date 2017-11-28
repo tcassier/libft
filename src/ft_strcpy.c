@@ -6,11 +6,9 @@
 /*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 01:17:04 by tcassier          #+#    #+#             */
-/*   Updated: 2017/11/27 07:17:21 by tcassier         ###   ########.fr       */
+/*   Updated: 2017/11/28 03:02:55 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 char		*ft_strcpy(char *dst, const char *src)
 {
