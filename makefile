@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tcassier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/27 11:19:07 by tcassier          #+#    #+#              #
-#    Updated: 2017/11/28 00:43:57 by tcassier         ###   ########.fr        #
+#    Updated: 2017/12/07 20:34:41 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@
 
 NAME = libft.a
 
-CC = gcc $(CFLAGS)
-CFLAGS = -Wall -Wextra -Werror
+CC = clang
+CFLAGS = -Wall -Wextra -Werror -I$(INC_PATH)
 
-SRC_PATH = ./src
-SRCS = $(addprefix $(SRC_PATH)/, $(SRC))
+SRC_PATH = ./src/
+SRCS = $(addprefix $(SRC_PATH), $(SRC))
 SRC = ft_atoi.c        \
 	  ft_bzero.c       \
 	  ft_isalnum.c     \
@@ -87,17 +87,17 @@ SRC = ft_atoi.c        \
 	  ft_toupper.c     \
 	  get_next_line.c
 
-OBJ_PATH = ./obj
-OBJS = $(addprefix $(OBJ_PATH)/, $(OBJ))
+OBJ_PATH = ./obj/
+OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
 OBJ = $(SRC:.c=.o)
 
-INC_PATH = ./includes
-INCS = $(addprefix $(INC_PATH)/, $(INC))
+INC_PATH = ./includes/
+INCS = $(addprefix $(INC_PATH), $(INC))
 INC = libft.h
 
 all: $(NAME)
 
-$(NAME): $(OBJ_PATH) $(INCS) $(OBJS) $(SRCS)
+$(NAME): $(OBJ_PATH) $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 	@echo "                                                        "
@@ -115,8 +115,8 @@ $(NAME): $(OBJ_PATH) $(INCS) $(OBJS) $(SRCS)
 	@echo "                                                        "
 
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH) $(INCS)
-	$(CC) -c $< -o $@ -I $(INC_PATH)
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INCS)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
