@@ -6,7 +6,7 @@
 #    By: tcassier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/27 11:19:07 by tcassier          #+#    #+#              #
-#    Updated: 2017/12/07 20:34:41 by tcassier         ###   ########.fr        #
+#    Updated: 2017/12/11 09:59:44 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC_PATH = ./src/
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 SRC = ft_atoi.c        \
 	  ft_bzero.c       \
+	  ft_count_word.c  \
 	  ft_isalnum.c     \
 	  ft_isalpha.c     \
 	  ft_isascii.c     \
@@ -116,7 +117,7 @@ $(NAME): $(OBJ_PATH) $(OBJS)
 
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INCS)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)

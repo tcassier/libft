@@ -6,7 +6,7 @@
 /*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:37:38 by tcassier          #+#    #+#             */
-/*   Updated: 2017/12/07 20:08:09 by tcassier         ###   ########.fr       */
+/*   Updated: 2017/12/11 09:59:29 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct		s_stock
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
+int					ft_count_word(const char *s, int c);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
