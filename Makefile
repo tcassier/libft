@@ -6,7 +6,7 @@
 #    By: tcassier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/27 11:19:07 by tcassier          #+#    #+#              #
-#    Updated: 2017/12/11 09:59:44 by tcassier         ###   ########.fr        #
+#    Updated: 2017/12/13 20:13:46 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC = ft_atoi.c        \
 	  ft_isalpha.c     \
 	  ft_isascii.c     \
 	  ft_isdigit.c     \
+	  ft_is_in.c       \
 	  ft_islower.c     \
 	  ft_isneg.c       \
 	  ft_isprint.c     \

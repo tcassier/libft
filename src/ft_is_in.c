@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_word.c                                    :+:      :+:    :+:   */
+/*   ft_is_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 09:58:45 by tcassier          #+#    #+#             */
-/*   Updated: 2017/12/13 20:16:06 by tcassier         ###   ########.fr       */
+/*   Created: 2017/12/13 20:14:29 by tcassier          #+#    #+#             */
+/*   Updated: 2017/12/13 20:15:05 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int			ft_count_word(char const *s, char c)
+int		ft_is_in(const char *s, int c)
 {
-	int		count;
-	int		begin_word;
-
-	begin_word = 0;
-	count = 0;
-	while (*s != '\0')
+	while (*s)
 	{
-		if (begin_word == 1 && *s == c)
-			begin_word = 0;
-		if (begin_word == 0 && *s != c)
-		{
-			begin_word = 1;
-			count++;
-		}
+		if (*s == c)
+			return (1);
 		s++;
 	}
-	return (count);
+	return (0);
 }
