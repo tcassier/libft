@@ -6,7 +6,7 @@
 /*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:37:38 by tcassier          #+#    #+#             */
-/*   Updated: 2017/12/13 20:14:23 by tcassier         ###   ########.fr       */
+/*   Updated: 2017/12/16 00:33:00 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 void				ft_memdel(void **ap);
+void				*ft_memjoin(void *s1, size_t len1, void *s2, size_t len2);
+void				*ft_memjoin_free(void *s1, size_t len1, void *s2,
+					size_t len2);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 int					ft_memoverlap(void *dst, const void *src, size_t n);
 void				*ft_memset(void *b, int c, size_t n);

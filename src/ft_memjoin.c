@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 05:24:58 by tcassier          #+#    #+#             */
-/*   Updated: 2017/12/16 00:17:45 by tcassier         ###   ########.fr       */
+/*   Created: 2017/12/16 00:16:12 by tcassier          #+#    #+#             */
+/*   Updated: 2017/12/16 00:27:57 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void		*ft_memjoin(void *s1, size_t len1, void *s2, size_t len2)
 {
-	size_t			index;
+	char	*ret;
 
-	index = 0;
-	while (index < n)
-	{
-		((char*)dst)[index] = ((char*)src)[index];
-		index++;
-	}
-	return (dst);
+	if (!(ret = (char*)ft_memalloc(sizeof(char) * (len1 + len2))))
+		return (NULL);
+	ft_memcpy((void*)ret, s1, len1);
+	ft_memcpy((void*)ret + len1, s2, len2);
+	return ((void*)ret);
 }
