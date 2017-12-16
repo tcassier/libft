@@ -6,18 +6,26 @@
 /*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:37:38 by tcassier          #+#    #+#             */
-/*   Updated: 2017/12/16 00:33:00 by tcassier         ###   ########.fr       */
+/*   Updated: 2017/12/16 05:23:57 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
+
 # include <fcntl.h>
 # include <stdio.h>
+
+# include <stdarg.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+
 # define BUFF_SIZE 4096
+# define CONV "sSpdDioOuUxXcC"
+# define FLAG "1234567890#-+ .lhjz"
+
+enum { HASH, PLUS, MINUS, SPACE, ZERO, WIDTH, PREC, PREFIX };
 
 typedef struct		s_list
 {
@@ -26,6 +34,16 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct		s_print
+{
+	char			*format;
+	size_t			last;
+	size_t			idx;
+	size_t			len;
+	int				error;
+	int				option[8];
+}					t_print;
+
 typedef struct		s_stock
 {
 	int				fd;
@@ -33,9 +51,12 @@ typedef struct		s_stock
 	struct s_stock	*next;
 }					t_stock;
 
+
+
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_count_word(const char *s, int c);
+int					ft_dprintf(const int fd, const char *format, ...);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
@@ -61,12 +82,16 @@ void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 void				ft_memdel(void **ap);
+void				ft_memdel_bis(void *ap, size_t n);
 void				*ft_memjoin(void *s1, size_t len1, void *s2, size_t len2);
 void				*ft_memjoin_free(void *s1, size_t len1, void *s2,
 					size_t len2);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 int					ft_memoverlap(void *dst, const void *src, size_t n);
 void				*ft_memset(void *b, int c, size_t n);
+void				ft_pr_process(t_list **lst, t_print *data, va_list ap);
+int					ft_printf(const char *format, ...);
+int					ft_sprintf(char **str, const char *format, ...);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putendl(char const *s);

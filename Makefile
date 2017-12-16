@@ -6,7 +6,7 @@
 #    By: tcassier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/27 11:19:07 by tcassier          #+#    #+#              #
-#    Updated: 2017/12/16 00:35:28 by tcassier         ###   ########.fr        #
+#    Updated: 2017/12/16 03:58:31 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = libft.a
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -I$(INC_PATH)
+CFLAGS = -I$(INC_PATH)
 
 SRC_PATH = ./src/
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
@@ -47,11 +47,14 @@ SRC = ft_atoi.c          \
 	  ft_memcmp.c        \
 	  ft_memcpy.c        \
 	  ft_memdel.c        \
+	  ft_memdel_bis.c    \
 	  ft_memjoin.c       \
 	  ft_memjoin_free.c  \
 	  ft_memmove.c       \
 	  ft_memoverlap.c    \
 	  ft_memset.c        \
+	  ft_pr_process.c    \
+	  ft_printf.c        \
 	  ft_putchar.c       \
 	  ft_putchar_fd.c    \
 	  ft_putendl.c       \
