@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 16:37:38 by tcassier          #+#    #+#             */
-/*   Updated: 2017/12/16 05:23:57 by tcassier         ###   ########.fr       */
+/*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/02 23:25:05 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <fcntl.h>
 # include <stdio.h>
-
+# include <stdint.h>
 # include <stdarg.h>
 # include <stdlib.h>
 # include <string.h>
@@ -26,6 +26,7 @@
 # define FLAG "1234567890#-+ .lhjz"
 
 enum { HASH, PLUS, MINUS, SPACE, ZERO, WIDTH, PREC, PREFIX };
+enum { FL, FLL, FHH, FH, FJ, FZ, FI }
 
 typedef struct		s_list
 {
@@ -37,6 +38,7 @@ typedef struct		s_list
 typedef struct		s_print
 {
 	char			*format;
+	char			conv;
 	size_t			last;
 	size_t			idx;
 	size_t			len;
@@ -50,8 +52,6 @@ typedef struct		s_stock
 	char			*rest;
 	struct s_stock	*next;
 }					t_stock;
-
-
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
@@ -91,7 +91,6 @@ int					ft_memoverlap(void *dst, const void *src, size_t n);
 void				*ft_memset(void *b, int c, size_t n);
 void				ft_pr_process(t_list **lst, t_print *data, va_list ap);
 int					ft_printf(const char *format, ...);
-int					ft_sprintf(char **str, const char *format, ...);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putendl(char const *s);

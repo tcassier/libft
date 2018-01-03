@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 01:52:43 by tcassier          #+#    #+#             */
-/*   Updated: 2017/12/16 05:31:01 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/02 23:26:11 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,21 @@ static void *ft_memdup_err(t_print *data, const void *s, size_t n)
 static void	*convert_chunk(t_list *chunk, t_print *data, va_list ap)
 {
 	void	*ret;
-	char	conv;
 
-	conv = data->format[data->idx];
-	ft_pr_flag(data, chunk);
-	if (ft_strchr(CONV, conv))
+	data->conv = data->format[data->idx];
+	ft_pr_getsize(data, chunk, conv);
+	ret = NULL;
+	if (ft_strchr(CONV, data->conv))
+		ret = ft_pr_convert(data, chunk, ap, conv);
+	else if ((ret = (void*)ft_strnew(1)))
 	{
+		((char*)ret)[0] = spec;
+		chunk->content_size = 1;
 	}
-	else
-	{
-	}
+	if (ret)
+		ret = ft_apply(ret, data);
+	if (!ret)
+		data->error++;
 	return (ret);
 }
 
@@ -74,7 +79,7 @@ void		ft_pr_process(t_list **lst, t_print *data, va_list ap)
 		check = (inflag && !ft_strchr(FLAG, c));
 		if (check || (!check && c == '%'))
 		{
-			chunk->content = (void*)process_chunk(check, chunk, data, ap);
+			chunk->content = process_chunk(check, chunk, data, ap);
 			inflag = !check;
 			if (!(chunk->next = ft_lstnew(NULL, 0)))
 				data->error++;

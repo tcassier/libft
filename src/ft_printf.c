@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 00:54:05 by tcassier          #+#    #+#             */
-/*   Updated: 2017/12/16 04:22:15 by tcassier         ###   ########.fr       */
+/*   Updated: 2017/12/30 01:42:15 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,19 @@ static int	ft_vasprintf(t_list **lst, const char *format, va_list ap)
 {
 	t_print	*data;
 	int		ret;
+	int		error;
 
+	error = 0;
 	if ((data = (t_print*)ft_memalloc(sizeof(t_print))) &&
 	(*lst = ft_lstnew(NULL, 0)))
 	{
 		data->format = (char*)format;
 		ft_pr_process(lst, data, ap);
+		error = data->error;
 	}
 	else
-		data->error++;
-	return (data->error ? -1 : data->len);
+		error++;
+	return (error ? -1 : data->len);
 }
 
 int			ft_dprintf(const int fd, const char *format, ...)
@@ -37,7 +40,7 @@ int			ft_dprintf(const int fd, const char *format, ...)
 
 	lst = NULL;
 	va_start(ap, format);
-	if ((ret = ft_vasprintf(&lst, format, ap)))
+	if ((ret = ft_vasprintf(&lst, format, ap)) > 0)
 	{
 		tmp = lst;
 		while (tmp)
@@ -51,33 +54,6 @@ int			ft_dprintf(const int fd, const char *format, ...)
 	return (ret);
 }
 
-int			ft_sprintf(char **str, const char *format, ...)
-{
-	va_list	ap;
-	t_list	*lst;
-	t_list	*tmp;
-	int		ret;
-	int		len;
-
-	len = 0;
-	lst = NULL;
-	va_start(ap, format);
-	if ((ret = ft_vasprintf(&lst, format, ap)))
-	{
-		while ((tmp = lst))
-		{
-			if (!(*str = ft_memjoin_free((void*)*str, len, lst->content,
-			lst->content_size)))
-				break ;
-			len += lst->content_size;
-			lst = lst->next;
-			free(tmp);
-		}
-	}
-	va_end(ap);
-	return (!(*str) ? -1 : ret);
-}
-
 int			ft_printf(const char *format, ...)
 {
 	va_list	ap;
@@ -87,7 +63,7 @@ int			ft_printf(const char *format, ...)
 
 	lst = NULL;
 	va_start(ap, format);
-	if ((ret = ft_vasprintf(&lst, format, ap)))
+	if ((ret = ft_vasprintf(&lst, format, ap)) > 0)
 	{
 		tmp = lst;
 		while (tmp)
