@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/02 23:25:05 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/06 16:21:25 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define FLAG "1234567890#-+ .lhjz"
 
 enum { HASH, PLUS, MINUS, SPACE, ZERO, WIDTH, PREC, PREFIX };
-enum { FL, FLL, FHH, FH, FJ, FZ, FI }
 
 typedef struct		s_list
 {

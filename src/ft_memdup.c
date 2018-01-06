@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uimaxtoa.c                                      :+:      :+:    :+:   */
+/*   ft_memdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/02 23:34:54 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/02 23:44:34 by tcassier         ###   ########.fr       */
+/*   Created: 2018/01/06 16:08:30 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/06 16:09:49 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_uimaxtoa(uintmax_t n, unsigned int base)
+void		*ft_memdup(const void *s, size_t n)
 {
-	char	*str;
-	char	c;
+	char	*ret;
 
-	if (!n)
-		str = ft_strdup("0");
-	else
-	{
-		while (n)
-		{
-			c = n % base;
-			c = (c < 10) ? c + '0' : c - 10 + 'a';
-		}
-	}
+	if (!(ret = ft_strnew(n)))
+		return (NULL);
+	ret = (char*)ft_memcpy((void*)ret, s, n);
+	return ((void*)ret);
 }

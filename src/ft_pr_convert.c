@@ -6,28 +6,35 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:16 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/02 23:33:34 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/06 18:44:03 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_getstr(t_data *data, t_list *chunk, va_list ap, size_t size)
+void		*ft_getstr(t_print *data, t_list *chunk, va_list ap, size_t size)
 {
 	char	*res;
 
-	if (conv == 'c')
+	if (data->conv == 'c' && size < sizeof(long))
 	{
 		if ((res = ft_strnew(1)))
 			res = (char*)ft_memset(res, (char)va_arg(ap, char), 1);
 	}
+	else if (data->conv == 'c' || data->conv == 'C')
+	{
+	}
 	else
 	{
-		res = (char*)va_arg(ap, char*);
+		res = (data->conv == 's' && size < sizeof(long)) ?
+		(char*)va_arg(ap, char*) : (char*)va_arg(ap, wchar_t*);
 		if (!res)
 			res = ft_strdup("(null)");
-		else
+		else if (data->conv == 's' && size < sizeof(long))
 			res = ft_strdup(res);
+		else
+		{
+		}
 	}
 	chunk->content_size = ft_strlen(res);
 	return ((void*)res);
@@ -42,7 +49,7 @@ char		*ft_conv_int(uintmax_t n, t_print *data)
 	else if (ft_strchr("oO", data->conv))
 		return (ft_uimaxtoa(n, 8));
 	else
-		return (ft_imaxtoa((intmax_t)n, 10);
+		return (ft_imaxtoa((intmax_t)n, 10));
 }
 
 void		*ft_getint(t_data *data, t_list *chunk, va_list ap, size_t size)
@@ -65,14 +72,16 @@ void		*ft_getint(t_data *data, t_list *chunk, va_list ap, size_t size)
 		res = ft_conv_int((unsigned int)va_arg(ap, int), data->conv);
 	else
 		res = ft_conv_int(va_arg(ap, intmax_t), data->conv);
-	res = ft_strlen(res);
+	chunk->content_size = ft_strlen(res);
 	return ((void*)res);
 }
 
 void		*ft_pr_convert(t_print *data, t_list *chunk, va_list ap, char conv)
 {
 	void	*res;
+	size_t	size;
 
+	size = ft_pr_getsize(data, chunk);
 	if (ft_strchr("sScC", conv))
 		res = ft_getstr(data, chunk, ap, size);
 	else
