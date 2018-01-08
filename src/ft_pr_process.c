@@ -6,31 +6,32 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 01:52:43 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/06 18:32:05 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/08 02:35:13 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	*convert_chunk(t_list *chunk, t_print *data, va_list ap)
+static void	*convert_chunk(t_print *data, t_list *chunk, va_list ap)
 {
 	void	*ret;
 
-	data->conv = data->format[data->idx];
 	ret = NULL;
+	ft_pr_flag(data, chunk);
+	data->conv = data->format[data->idx];
 	if (ft_strchr(CONV, data->conv))
 		ret = ft_pr_convert(data, chunk, ap);
 	else if ((ret = (void*)ft_strnew(1)))
 	{
-		((char*)ret)[0] = spec;
+		((char*)ret)[0] = data->conv;
 		chunk->content_size = 1;
 	}
 	if (ret)
-		ret = ft_apply(ret, data, chunk);
+		ret = ft_pr_apply(ret, data, chunk);
 	return (ret);
 }
 
-static void	*process_chunk(int check, t_list *chunk, t_print *data, va_list ap)
+static void	*process_chunk(int check, t_print *data, t_list *chunk, va_list ap)
 {
 	void	*ret;
 
@@ -38,7 +39,7 @@ static void	*process_chunk(int check, t_list *chunk, t_print *data, va_list ap)
 		ret = ft_memdup(data->format + data->last,
 		--chunk->content_size);
 	else if (check == 1)
-		ret = convert_chunk(chunk, data, ap);
+		ret = convert_chunk(data, chunk, ap);
 	else
 		ret = ft_memdup(data->format + data->last,
 		chunk->content_size);
@@ -65,7 +66,7 @@ void		ft_pr_process(t_list **lst, t_print *data, va_list ap)
 		check = (inflag && !ft_strchr(FLAG, c));
 		if (check || (!check && c == '%'))
 		{
-			chunk->content = process_chunk(check, chunk, data, ap);
+			chunk->content = process_chunk(check, data, chunk, ap);
 			inflag = !check;
 			if (!(chunk->next = ft_lstnew(NULL, 0)))
 				data->error++;
@@ -73,5 +74,5 @@ void		ft_pr_process(t_list **lst, t_print *data, va_list ap)
 		}
 	}
 	if (!inflag && !data->error)
-		chunk->content = process_chunk(2, chunk, data, ap);
+		chunk->content = process_chunk(2, data, chunk, ap);
 }

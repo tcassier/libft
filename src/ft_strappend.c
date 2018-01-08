@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdup.c                                        :+:      :+:    :+:   */
+/*   ft_strappend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/06 16:08:30 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/08 00:45:02 by tcassier         ###   ########.fr       */
+/*   Created: 2018/01/08 01:28:34 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/08 02:50:11 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memdup(const void *s, size_t n)
+char		*ft_strappend(char **s1, char **s2, char c)
 {
 	char	*ret;
 
-	if (!(ret = ft_strnew(n)))
-		return (NULL);
-	ret = (char*)ft_memcpy((void*)ret, s, n);
-	return ((void*)ret);
+	ret = ft_strjoin(*s1, *s2);
+	if (c == 'F' || c == 'B')
+		ft_strdel(s1);
+	if (c == 'S' || c == 'B')
+		ft_strdel(s2);
+	return (ret);
 }

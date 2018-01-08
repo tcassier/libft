@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 04:36:33 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/06 18:44:46 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/08 02:35:26 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static int	width_prec(char *str, size_t *idx)
 	{
 		(*idx)++;
 		if (str[*idx] == '-')
+		{
 			isneg++;
+			(*idx)++;
+		}
 	}
 	while (ft_isdigit(str[*idx]))
 	{
@@ -33,24 +36,25 @@ static int	width_prec(char *str, size_t *idx)
 	return (isneg ? 0 : ret);
 }
 
-static void	ft_pr_flag(t_print *data, t_list *chunk)
+void		ft_pr_flag(t_print *data, t_list *chunk)
 {
 	size_t	idx;
 	char	*str;
 	int		*option;
 
-	idx = (size_t)-1;
+	idx = 0;
 	option = data->option;
 	str = data->format + data->last;
 	ft_bzero((void*)option, sizeof(int) * 8);
-	while (++idx < chunk->content_size)
+	option[PREC] = -1;
+	while (idx < chunk->content_size)
 	{
 		option[HASH] = str[idx] == '#' ? 1 : option[HASH];
 		option[PLUS] = str[idx] == '+' ? 1 : option[PLUS];
 		option[MINUS] = str[idx] == '-' ? 1 : option[MINUS];
 		option[SPACE] = str[idx] == ' ' ? 1 : option[SPACE];
 		option[ZERO] = str[idx] == '0' ? 1 : option[ZERO];
-		if (ft_isdigit(str[idx]))
+		if (str[idx] > '0' && str[idx] <= '9')
 			option[WIDTH] = width_prec(str, &idx);
 		else if (str[idx] == '.')
 			option[PREC] = width_prec(str, &idx);

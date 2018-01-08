@@ -6,41 +6,39 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:16 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/06 18:44:03 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/08 02:35:18 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_getstr(t_print *data, t_list *chunk, va_list ap, size_t size)
+static void	*getstr(t_print *data, t_list *chunk, va_list ap, size_t size)
 {
-	char	*res;
+	char	*ret;
 
 	if (data->conv == 'c' && size < sizeof(long))
 	{
-		if ((res = ft_strnew(1)))
-			res = (char*)ft_memset(res, (char)va_arg(ap, char), 1);
+		if ((ret = ft_strnew(1)))
+			ret = (char*)ft_memset(ret, (char)va_arg(ap, int), 1);
 	}
 	else if (data->conv == 'c' || data->conv == 'C')
-	{
-	}
+		return (NULL);
 	else
 	{
-		res = (data->conv == 's' && size < sizeof(long)) ?
+		ret = (data->conv == 's' && size < sizeof(long)) ?
 		(char*)va_arg(ap, char*) : (char*)va_arg(ap, wchar_t*);
-		if (!res)
-			res = ft_strdup("(null)");
+		if (!ret)
+			ret = ft_strdup("(null)");
 		else if (data->conv == 's' && size < sizeof(long))
-			res = ft_strdup(res);
+			ret = ft_strdup(ret);
 		else
-		{
-		}
+			return (NULL);
 	}
-	chunk->content_size = ft_strlen(res);
-	return ((void*)res);
+	chunk->content_size = ft_strlen(ret);
+	return ((void*)ret);
 }
 
-char		*ft_conv_int(uintmax_t n, t_print *data)
+static char	*conv_int(uintmax_t n, t_print *data)
 {
 	if (ft_strchr("uU", data->conv))
 		return (ft_uimaxtoa(n, 10));
@@ -52,39 +50,39 @@ char		*ft_conv_int(uintmax_t n, t_print *data)
 		return (ft_imaxtoa((intmax_t)n, 10));
 }
 
-void		*ft_getint(t_data *data, t_list *chunk, va_list ap, size_t size)
+static void	*getint(t_print *data, t_list *chunk, va_list ap, size_t size)
 {
-	char	*res;
+	char	*ret;
 
 	if (ft_strchr("dDi", data->conv) && size == sizeof(char))
-		res = ft_conv_int((char)va_arg(ap, int), data->conv);
+		ret = conv_int((char)va_arg(ap, int), data);
 	else if (ft_strchr("dDi", data->conv) && size == sizeof(short))
-		res = ft_conv_int((short)va_arg(ap, int), data->conv);
+		ret = conv_int((short)va_arg(ap, int), data);
 	else if (ft_strchr("dDi", data->conv) && size == sizeof(int))
-		res = ft_conv_int((int)va_arg(ap, int), data->conv);
+		ret = conv_int((int)va_arg(ap, int), data);
 	else if (ft_strchr("dDi", data->conv))
-		res = ft_conv_int(va_arg(ap, intmax_t), data->conv);
+		ret = conv_int(va_arg(ap, intmax_t), data);
 	else if (size == sizeof(char))
-		res = ft_conv_int((unsigned char)va_arg(ap, int), data->conv);
+		ret = conv_int((unsigned char)va_arg(ap, int), data);
 	else if (size == sizeof(short))
-		res = ft_conv_int((unsigned short)va_arg(ap, int), data->conv);
+		ret = conv_int((unsigned short)va_arg(ap, int), data);
 	else if (size == sizeof(int))
-		res = ft_conv_int((unsigned int)va_arg(ap, int), data->conv);
+		ret = conv_int((unsigned int)va_arg(ap, int), data);
 	else
-		res = ft_conv_int(va_arg(ap, intmax_t), data->conv);
-	chunk->content_size = ft_strlen(res);
-	return ((void*)res);
+		ret = conv_int(va_arg(ap, intmax_t), data);
+	chunk->content_size = ft_strlen(ret);
+	return ((void*)ret);
 }
 
-void		*ft_pr_convert(t_print *data, t_list *chunk, va_list ap, char conv)
+void		*ft_pr_convert(t_print *data, t_list *chunk, va_list ap)
 {
-	void	*res;
+	void	*ret;
 	size_t	size;
 
 	size = ft_pr_getsize(data, chunk);
-	if (ft_strchr("sScC", conv))
-		res = ft_getstr(data, chunk, ap, size);
+	if (ft_strchr("sScC", data->conv))
+		ret = getstr(data, chunk, ap, size);
 	else
-		res = ft_getint(data, chunk, ap, size);
-	return (res);
+		ret = getint(data, chunk, ap, size);
+	return (ret);
 }
