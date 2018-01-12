@@ -14,8 +14,8 @@
 
 NAME = libft.a
 
-CC = clang
-CFLAGS = -I$(INC_PATH)
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -I$(INC_PATH)
 
 SRC_PATH = ./src/
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
