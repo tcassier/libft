@@ -6,7 +6,7 @@
 #    By: tcassier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/27 11:19:07 by tcassier          #+#    #+#              #
-#    Updated: 2018/01/08 03:01:40 by tcassier         ###   ########.fr        #
+#    Updated: 2018/01/12 19:43:24 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,11 +54,6 @@ SRC = ft_atoi.c          \
 	  ft_memmove.c       \
 	  ft_memoverlap.c    \
 	  ft_memset.c        \
-	  ft_pr_apply.c      \
-	  ft_pr_convert.c    \
-	  ft_pr_flag.c       \
-	  ft_pr_process.c    \
-	  ft_printf.c        \
 	  ft_putchar.c       \
 	  ft_putchar_fd.c    \
 	  ft_putendl.c       \

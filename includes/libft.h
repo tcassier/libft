@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/08 03:01:27 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/12 19:43:53 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@
 # include <unistd.h>
 
 # define BUFF_SIZE 4096
-# define CONV "sSpdDioOuUxXcC"
-# define FLAG "1234567890#-+ .lhjz"
-
-enum { HASH, PLUS, MINUS, SPACE, ZERO, WIDTH, PREC, PREFIX };
 
 typedef struct		s_list
 {
@@ -33,17 +29,6 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-
-typedef struct		s_print
-{
-	char			*format;
-	char			conv;
-	size_t			last;
-	size_t			idx;
-	size_t			len;
-	int				error;
-	int				option[8];
-}					t_print;
 
 typedef struct		s_stock
 {
@@ -55,7 +40,6 @@ typedef struct		s_stock
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_count_word(const char *s, int c);
-int					ft_dprintf(const int fd, const char *format, ...);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
@@ -89,12 +73,6 @@ void				*ft_memjoin_free(void *s1, size_t len1, void *s2,
 void				*ft_memmove(void *dst, const void *src, size_t len);
 int					ft_memoverlap(void *dst, const void *src, size_t n);
 void				*ft_memset(void *b, int c, size_t n);
-void				*ft_pr_apply(void *ret, t_print *data, t_list *chunk);
-void				*ft_pr_convert(t_print *data, t_list *chunk, va_list ap);
-void				ft_pr_flag(t_print *data, t_list *chunk);
-size_t				ft_pr_getsize(t_print *data, t_list *chunk);
-void				ft_pr_process(t_list **lst, t_print *data, va_list ap);
-int					ft_printf(const char *format, ...);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putendl(char const *s);
