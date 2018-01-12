@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/12 19:43:53 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/12 19:57:38 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-
-typedef struct		s_stock
-{
-	int				fd;
-	char			*rest;
-	struct s_stock	*next;
-}					t_stock;
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);

@@ -6,31 +6,29 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 19:42:52 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/12 19:42:53 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/12 19:58:09 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static t_stock		*check_fd(t_stock **begin_list, const int fd)
+static t_list		*check_fd(t_list **begin_list, size_t fd)
 {
-	t_stock			*prev;
-	t_stock			*tmp;
+	t_list			*prev;
+	t_list			*tmp;
 
 	tmp = *begin_list;
 	prev = NULL;
 	while (tmp)
 	{
-		if (fd == tmp->fd)
+		if (fd == tmp->content_size)
 			return (tmp);
 		prev = tmp;
 		tmp = tmp->next;
 	}
-	if (!(tmp = (t_stock*)malloc(sizeof(t_stock))))
+	if (!(tmp = (t_list*)ft_memalloc(sizeof(t_list))))
 		return (NULL);
-	tmp->fd = fd;
-	tmp->rest = NULL;
-	tmp->next = NULL;
+	tmp->content_size = fd;
 	if (prev)
 		prev->next = tmp;
 	else
@@ -38,30 +36,31 @@ static t_stock		*check_fd(t_stock **begin_list, const int fd)
 	return (tmp);
 }
 
-static size_t		rest_instance(t_stock *file, char **line)
+static size_t		rest_instance(t_list *file, char **line)
 {
 	size_t			index;
 	char			*tmp;
 
 	index = -1;
 	*line = NULL;
-	if (file->rest)
+	if (file->content)
 	{
-		while (file->rest[++index])
+		while (((char*)file->content)[++index])
 		{
-			if (file->rest[index] == '\n')
+			if (((char*)file->content)[index] == '\n')
 			{
-				if (!(*line = ft_strndup(file->rest, index)))
+				if (!(*line = ft_strndup((char*)file->content, index)))
 					return (0);
-				tmp = file->rest;
-				if (!(file->rest = ft_strdup(file->rest + index + 1)))
+				tmp = (char*)file->content;
+				if (!(file->content = (void*)ft_strdup((char*)file->content
+				+ index + 1)))
 					return (0);
 				free(tmp);
 				return (1);
 			}
 		}
-		*line = file->rest;
-		file->rest = NULL;
+		*line = (char*)file->content;
+		file->content = NULL;
 	}
 	return (2);
 }
@@ -86,7 +85,7 @@ static size_t		create_line(char *buffer, char **line, size_t index)
 	return (1);
 }
 
-static size_t		get_line(char *buffer, t_stock *file, char **line)
+static size_t		get_line(char *buffer, t_list *file, char **line)
 {
 	size_t			index;
 	int				ret;
@@ -97,7 +96,7 @@ static size_t		get_line(char *buffer, t_stock *file, char **line)
 		index++;
 	if (buffer[index] == '\n')
 	{
-		if (!(file->rest = ft_strdup(buffer + index + 1)))
+		if (!(file->content = (void*)ft_strdup(buffer + index + 1)))
 			return (0);
 		ret = 1;
 	}
@@ -108,12 +107,12 @@ static size_t		get_line(char *buffer, t_stock *file, char **line)
 
 int					get_next_line(const int fd, char **line)
 {
-	static t_stock	*begin_list = NULL;
-	t_stock			*file;
+	static t_list	*begin_list = NULL;
+	t_list			*file;
 	char			buffer[BUFF_SIZE + 1];
 	int				check;
 
-	if ((!line || fd < 0) || !(file = check_fd(&begin_list, fd)) ||
+	if ((!line || fd < 0) || !(file = check_fd(&begin_list, (size_t)fd)) ||
 	!(check = rest_instance(file, line)))
 		return (-1);
 	if (check == 1)
