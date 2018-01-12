@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tcassier <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/27 11:19:07 by tcassier          #+#    #+#              #
 #    Updated: 2018/01/12 19:43:24 by tcassier         ###   ########.fr        #
