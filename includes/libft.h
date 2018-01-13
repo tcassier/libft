@@ -6,17 +6,13 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/12 19:57:38 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/13 02:15:54 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdint.h>
-# include <stdarg.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
