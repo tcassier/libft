@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_memset_sec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/12 19:40:12 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/15 23:59:12 by tcassier         ###   ########.fr       */
+/*   Created: 2017/11/08 03:58:20 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/11 19:49:19 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strncat(char *s1, const char *s2, size_t n)
+void	*ft_memset_sec(void *b, int c, size_t len)
 {
-	size_t	index;
-	size_t	check;
-
-	index = 0;
-	check = ft_strlen(s1);
-	while (s2[index] != '\0' && index < n)
-	{
-		s1[check + index] = s2[index];
-		index++;
-	}
-	s1[check + index] = '\0';
-	return (s1);
+	while (len-- && b)
+		((char*)b)[len] = (char)c;
+	return (b);
 }

@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strinsert.c                                     :+:      :+:    :+:   */
+/*   ft_strnncpy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/07 22:49:01 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/16 00:19:34 by tcassier         ###   ########.fr       */
+/*   Created: 2018/01/12 19:40:35 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/15 23:20:36 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strinsert(char **add, char **str, size_t where, char c)
+char		*ft_strnncpy(char *dst, const char *src, size_t n)
 {
-	char	*ret;
+	size_t	index;
 
-	ret = NULL;
-	if (*add && *str && (ret = ft_strnew(ft_strlen(*add) + ft_strlen(*str))))
-		ft_strcat(ft_strcat(ft_strncat(ret, *str, where), *add), *str + where);
-	if (c == 'F' || c == 'B')
-		ft_strdel(add);
-	if (c == 'S' || c == 'B')
-		ft_strdel(str);
-	return (ret);
+	index = -1;
+	while (++index < n)
+		dst[index] = src[index];
+	return (dst);
 }

@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_strnjoin_rev.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/12 19:40:12 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/15 23:59:12 by tcassier         ###   ########.fr       */
+/*   Created: 2017/11/08 09:22:05 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/15 23:39:59 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strncat(char *s1, const char *s2, size_t n)
+char		*ft_strnjoin_rev(char const *s1, char const *s2, int n)
 {
-	size_t	index;
-	size_t	check;
+	char	*str;
 
-	index = 0;
-	check = ft_strlen(s1);
-	while (s2[index] != '\0' && index < n)
-	{
-		s1[check + index] = s2[index];
-		index++;
-	}
-	s1[check + index] = '\0';
-	return (s1);
+	if (!(str = ft_strnew(n + ft_strlen(s2))))
+		return (NULL);
+	ft_strnncpy(str, s1, n);
+	ft_strcat(str + n, s2);
+	return (str);
 }

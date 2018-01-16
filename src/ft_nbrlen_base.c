@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strinsert.c                                     :+:      :+:    :+:   */
+/*   ft_nbrlen_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/07 22:49:01 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/16 00:19:34 by tcassier         ###   ########.fr       */
+/*   Created: 2018/01/10 11:54:21 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/10 12:25:25 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char		*ft_strinsert(char **add, char **str, size_t where, char c)
+int		ft_nbrlen_base(int n, int base)
 {
-	char	*ret;
+	int	len;
 
-	ret = NULL;
-	if (*add && *str && (ret = ft_strnew(ft_strlen(*add) + ft_strlen(*str))))
-		ft_strcat(ft_strcat(ft_strncat(ret, *str, where), *add), *str + where);
-	if (c == 'F' || c == 'B')
-		ft_strdel(add);
-	if (c == 'S' || c == 'B')
-		ft_strdel(str);
-	return (ret);
+	len = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
+	{
+		n = -n;
+		len++;
+	}
+	while (n > 0)
+	{
+		n /= base;
+		len++;
+	}
+	return (len);
 }

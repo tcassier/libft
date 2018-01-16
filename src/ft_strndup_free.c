@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_strndup_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/12 19:40:12 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/15 23:59:12 by tcassier         ###   ########.fr       */
+/*   Created: 2017/11/14 04:52:15 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/10 18:48:37 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strncat(char *s1, const char *s2, size_t n)
+char		*ft_strndup_free(char **s1, size_t n)
 {
 	size_t	index;
-	size_t	check;
+	char	*dest;
+	int		len;
 
 	index = 0;
-	check = ft_strlen(s1);
-	while (s2[index] != '\0' && index < n)
+	len = ft_strlen((char*)(*s1)) >= n ? n : ft_strlen((char*)(*s1));
+	if (!(dest = ft_strnew(len)))
 	{
-		s1[check + index] = s2[index];
-		index++;
+		ft_strdel(s1);
+		return (NULL);
 	}
-	s1[check + index] = '\0';
-	return (s1);
+	dest = ft_strncpy(dest, *s1, n);
+	ft_strdel(s1);
+	return (dest);
 }

@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strinsert.c                                     :+:      :+:    :+:   */
+/*   ft_uimaxtoa_base.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/07 22:49:01 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/16 00:19:34 by tcassier         ###   ########.fr       */
+/*   Created: 2018/01/10 11:55:55 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/10 12:42:07 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strinsert(char **add, char **str, size_t where, char c)
+char		*ft_uimaxtoa_base(uintmax_t n, int base)
 {
-	char	*ret;
+	int		len;
+	char	*str;
 
-	ret = NULL;
-	if (*add && *str && (ret = ft_strnew(ft_strlen(*add) + ft_strlen(*str))))
-		ft_strcat(ft_strcat(ft_strncat(ret, *str, where), *add), *str + where);
-	if (c == 'F' || c == 'B')
-		ft_strdel(add);
-	if (c == 'S' || c == 'B')
-		ft_strdel(str);
-	return (ret);
+	if (n == 0)
+		return (ft_strdup("0"));
+	len = ft_nbrlen_uimax_base(n, base);
+	if (!(str = ft_strnew(len)))
+		return (NULL);
+	str[len--] = '\0';
+	while (n > 0)
+	{
+		if (n % base < 10)
+			str[len--] = n % base + '0';
+		else
+			str[len--] = n % base - 10 + 'a';
+		n /= base;
+	}
+	return (str);
 }

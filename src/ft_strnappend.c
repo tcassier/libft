@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strinsert.c                                     :+:      :+:    :+:   */
+/*   ft_strnappend.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/07 22:49:01 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/16 00:19:34 by tcassier         ###   ########.fr       */
+/*   Created: 2018/01/08 01:28:34 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/16 00:19:33 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strinsert(char **add, char **str, size_t where, char c)
+char		*ft_strnappend(char **s1, char **s2, int n, char c)
 {
 	char	*ret;
 
-	ret = NULL;
-	if (*add && *str && (ret = ft_strnew(ft_strlen(*add) + ft_strlen(*str))))
-		ft_strcat(ft_strcat(ft_strncat(ret, *str, where), *add), *str + where);
+	ret = ft_strnjoin(*s1, *s2, n);
 	if (c == 'F' || c == 'B')
-		ft_strdel(add);
+		ft_strdel(s1);
 	if (c == 'S' || c == 'B')
-		ft_strdel(str);
+		ft_strdel(s2);
 	return (ret);
 }
