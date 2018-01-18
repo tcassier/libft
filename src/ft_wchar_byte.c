@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnappend_rev.c                                :+:      :+:    :+:   */
+/*   ft_wchar_byte.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/08 01:28:34 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/16 00:15:13 by tcassier         ###   ########.fr       */
+/*   Created: 2018/01/17 23:53:17 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/18 02:55:54 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strnappend_rev(char **s1, char **s2, int n, char c)
+int					ft_wchar_byte(wchar_t c)
 {
-	char	*ret;
+	unsigned int	len;
+	unsigned int	tmp;
 
-	ret = ft_strnjoin_rev(*s1, *s2, n);
-	if (c == 'F' || c == 'B')
-		ft_strdel(s1);
-	if (c == 'S' || c == 'B')
-		ft_strdel(s2);
-	return (ret);
+	len = 0;
+	tmp = 1;
+	while (tmp <= (unsigned int)c)
+	{
+		tmp <<= 1;
+		len++;
+	}
+	if (len <= 7)
+		return (1);
+	else if (len <= 11)
+		return (2);
+	else if (len <= 16)
+		return (3);
+	else if (len <= 21)
+		return (4);
+	else
+		return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/16 20:10:31 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/18 01:50:30 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_print
 {
 	char			*format;
 	char			conv;
+	size_t			size;
 	size_t			last;
 	size_t			idx;
 	size_t			len;
@@ -89,8 +90,9 @@ int					ft_nbrlen_uimax_base(uintmax_t n, int base);
 void				*ft_pr_apply(void *ret, t_print *data, t_list *chunk);
 void				*ft_pr_convert(t_print *data, t_list *chunk, va_list ap);
 void				ft_pr_flag(t_print *data, t_list *chunk, va_list ap);
-size_t				ft_pr_getsize(t_print *data, t_list *chunk);
+void				ft_pr_getsize(t_print *data, t_list *chunk);
 void				ft_pr_process(t_list *lst, t_print *data, va_list ap);
+void				ft_pr_unicode(char str[5], int byte, wchar_t c);
 int					ft_printf(const char *format, ...);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
@@ -118,8 +120,8 @@ size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlen(const char *s);
 char				*ft_strmap(char const *s, char (*f)(char));
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char				*ft_strnappend(char **s1, char **s2, int n, char c);
-char				*ft_strnappend_rev(char **s1, char **s2, int n, char c);
+char				*ft_strnappend_s1(char **s1, char **s2, int n, char c);
+char				*ft_strnappend_s2(char **s1, char **s2, int n, char c);
 char				*ft_strncat(char *s1, const char *s2, size_t n);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strncpy(char *dst, const char *src, size_t n);
@@ -127,8 +129,8 @@ char				*ft_strndup(const char *s1, size_t n);
 char				*ft_strndup_free(char **s1, size_t n);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strnew(size_t size);
-char				*ft_strnjoin(char const *s1, char const *s2, int n);
-char				*ft_strnjoin_rev(char const *s1, char const *s2, int n);
+char				*ft_strnjoin_s1(char const *s1, char const *s2, int n);
+char				*ft_strnjoin_s2(char const *s1, char const *s2, int n);
 char				*ft_strnncat(char *s1, const char *s2, size_t n);
 char				*ft_strnncpy(char *dst, const char *src, size_t n);
 char				*ft_strnstr(const char *haystack, const char *needle,
@@ -143,5 +145,7 @@ char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 char				*ft_uimaxtoa_base(uintmax_t n, int base);
+int					ft_wchar_byte(wchar_t c);
+size_t				ft_wstrlen(wchar_t *wstr);
 int					get_next_line(const int fd, char **line);
 #endif

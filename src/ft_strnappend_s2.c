@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uimaxtoa_base.c                                 :+:      :+:    :+:   */
+/*   ft_strnappend_s2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 11:55:55 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/17 21:49:10 by tcassier         ###   ########.fr       */
+/*   Created: 2018/01/08 01:28:34 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/17 21:53:19 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_uimaxtoa_base(uintmax_t n, int base)
+char		*ft_strnappend_s2(char **s1, char **s2, int n, char c)
 {
-	int		len;
-	char	*str;
+	char	*ret;
 
-	if (n == 0)
-		return (ft_strdup("0"));
-	len = ft_nbrlen_uimax_base(n, base);
-	if (!(str = ft_strnew(len)))
-		return (NULL);
-	str[len--] = '\0';
-	while (n > 0)
-	{
-		if (n % base < 10)
-			str[len--] = n % base + '0';
-		else
-			str[len--] = n % base - 10 + 'a';
-		n /= base;
-	}
-	return (str);
+	ret = ft_strnjoin_s2(*s1, *s2, n);
+	if (c == 'F' || c == 'B')
+		ft_strdel(s1);
+	if (c == 'S' || c == 'B')
+		ft_strdel(s2);
+	return (ret);
 }

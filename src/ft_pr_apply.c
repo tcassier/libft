@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/03 16:24:11 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/16 00:18:31 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/18 01:24:44 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ static void	*apply_width(char *ret, t_print *data, t_list *chunk, int opt[8])
 	!ft_strchr("dDioOuU", data->conv))) ? '0' : ' ';
 	tmp = tmp ? ft_memset(tmp, c, len) : NULL;
 	if (opt[MINUS])
-		ret = ft_strnappend_rev(&ret, &tmp, (int)chunk->content_size, 'F');
+		ret = ft_strnappend_s1(&ret, &tmp, (int)chunk->content_size, 'F');
 	else if (tmp[0] == '0' && len)
 		ret = ft_strinsert(&tmp, &ret, opt[PREFIX], 'S');
 	else if (len)
-		ret = ft_strnappend(&tmp, &ret, (int)chunk->content_size, 'S');
+		ret = ft_strnappend_s2(&tmp, &ret, (int)chunk->content_size, 'S');
 	chunk->content_size += len;
 	ft_strdel(&tmp);
 	return (ret);

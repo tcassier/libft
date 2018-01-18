@@ -6,11 +6,22 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 04:36:33 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/16 19:51:14 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/18 01:48:36 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void		ft_pr_unicode(char str[5], int byte, wchar_t c)
+{
+	str[3] = (byte == 3) ? (char)((c & 0x3F) | 0x80) : '\0';
+	c = (byte == 3) ? c >> 6 : c;
+	str[2] = (byte > 1) ? (char)((c & 0x3F) | 0x80) : '\0';
+	c = (byte > 1) ? c >> 6 : c;
+	str[1] = (byte > 0) ? (char)((c & 0x3F) | 0x80) : '\0';
+	str[0] = (byte == 0) ? (char)c : (char)((c >> 6) |
+	(0xF0 << (3 - byte)));
+}
 
 static int	width_prec(char *str, size_t *idx, va_list ap)
 {
@@ -60,28 +71,26 @@ void		ft_pr_flag(t_print *data, t_list *chunk, va_list ap)
 	option[PREC] = (option[PREC] < -1) ? -1 : option[PREC];
 }
 
-size_t		ft_pr_getsize(t_print *data, t_list *chunk)
+void		ft_pr_getsize(t_print *data, t_list *chunk)
 {
 	char	*str;
-	size_t	size;
 
-	size = 0;
 	str = data->format + data->last;
+	data->size = 0;
 	if (ft_strchr("SpDOUC", data->conv))
-		size = sizeof(long);
+		data->size = sizeof(long);
 	else if (ft_strnstr(str, "j", chunk->content_size))
-		size = sizeof(intmax_t);
+		data->size = sizeof(intmax_t);
 	else if (ft_strnstr(str, "z", chunk->content_size))
-		size = sizeof(size_t);
+		data->size = sizeof(size_t);
 	else if (ft_strnstr(str, "ll", chunk->content_size))
-		size = sizeof(long long);
+		data->size = sizeof(long long);
 	else if (ft_strnstr(str, "l", chunk->content_size))
-		size = sizeof(long);
+		data->size = sizeof(long);
 	else if (ft_strnstr(str, "hh", chunk->content_size))
-		size = sizeof(char);
+		data->size = sizeof(char);
 	else if (ft_strnstr(str, "h", chunk->content_size))
-		size = sizeof(short);
-	else if (!size && ft_strchr("diouxX", data->conv))
-		size = sizeof(int);
-	return (size);
+		data->size = sizeof(short);
+	else if (!data->size && ft_strchr("diouxX", data->conv))
+		data->size = sizeof(int);
 }
