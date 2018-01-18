@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_lflen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/12 19:28:06 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/18 08:12:53 by tcassier         ###   ########.fr       */
+/*   Created: 2018/01/18 07:56:52 by tcassier          #+#    #+#             */
+/*   Updated: 2018/01/18 09:41:55 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_itoa(int n)
+size_t		ft_lflen(double n)
 {
-	int		length;
-	int		tmp_n;
-	int		sign;
-	char	*str;
+	size_t	ret;
+	int		n_int;
 
-	length = 1;
-	sign = 1;
-	tmp_n = n;
-	while (tmp_n /= 10)
-		length++;
+	ret = 0;
 	if (n < 0)
 	{
-		sign = -1;
-		length++;
+		ret++;
+		n = -n;
 	}
-	if (!(str = ft_strnew(length)))
-		return (NULL);
-	while (length--)
+	n_int = (int)n;
+	while (n_int)
 	{
-		str[length] = n % 10 * sign + '0';
-		n /= 10;
+		n_int /= 10;
+		ret++;
 	}
-	if (sign == -1)
-		str[0] = '-';
-	return (str);
+	ret += 7;
+	return (ret);
 }

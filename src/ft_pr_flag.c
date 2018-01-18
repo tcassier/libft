@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 04:36:33 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/18 01:48:36 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/18 09:52:06 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void		ft_pr_getsize(t_print *data, t_list *chunk)
 
 	str = data->format + data->last;
 	data->size = 0;
-	if (ft_strchr("SpDOUC", data->conv))
+	if (ft_strchr("SpDOUCF", data->conv))
 		data->size = sizeof(long);
 	else if (ft_strnstr(str, "j", chunk->content_size))
 		data->size = sizeof(intmax_t);
@@ -91,6 +91,6 @@ void		ft_pr_getsize(t_print *data, t_list *chunk)
 		data->size = sizeof(char);
 	else if (ft_strnstr(str, "h", chunk->content_size))
 		data->size = sizeof(short);
-	else if (!data->size && ft_strchr("diouxX", data->conv))
+	else if (!data->size && ft_strchr("diouxXf", data->conv))
 		data->size = sizeof(int);
 }

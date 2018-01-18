@@ -6,13 +6,13 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 04:57:15 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/18 04:58:13 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/18 10:38:34 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_sqrt(int	n)
+int		ft_sqrt(int n)
 {
 	int	index;
 

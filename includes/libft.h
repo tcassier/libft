@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/18 04:58:55 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/18 10:09:16 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 
 # define BUFF_SIZE 4096
-# define CONV "sSpbdDioOuUxXcC"
+# define CONV "sSpbdDioOfFuUxXcC"
 # define FLAG "1234567890#-+ .lhjz*"
 
 enum { HASH, PLUS, MINUS, SPACE, ZERO, WIDTH, PREC, PREFIX };
@@ -60,7 +60,10 @@ int					ft_isprint(int c);
 int					ft_isspace(int c);
 int					ft_isupper(int c);
 char				*ft_itoa(int n);
+char				*ft_itoa_dst(char *dst, intmax_t n);
 char				*ft_itoa_base(int n, int base);
+size_t				ft_lflen(double n);
+char				*ft_lftoa(double n);
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstadd_back(t_list *alst, t_list *new);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
@@ -90,6 +93,7 @@ int					ft_nbrlen_uimax_base(uintmax_t n, int base);
 void				*ft_pr_apply(void *ret, t_print *data, t_list *chunk);
 void				*ft_pr_convert(t_print *data, t_list *chunk, va_list ap);
 void				ft_pr_flag(t_print *data, t_list *chunk, va_list ap);
+void				*ft_pr_float(t_print *data, t_list *chunk, va_list ap);
 void				ft_pr_getsize(t_print *data, t_list *chunk);
 void				ft_pr_process(t_list *lst, t_print *data, va_list ap);
 void				ft_pr_unicode(char str[5], int byte, wchar_t c);
