@@ -6,7 +6,7 @@
 #    By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/15 23:45:03 by tcassier          #+#    #+#              #
-#    Updated: 2018/01/18 03:33:17 by tcassier         ###   ########.fr        #
+#    Updated: 2018/01/18 04:58:31 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRC = ft_atoi.c                \
 	  ft_putnbr_fd.c           \
 	  ft_putstr.c              \
 	  ft_putstr_fd.c           \
+	  ft_sqrt.c                \
 	  ft_strappend.c           \
 	  ft_strappend_sec.c       \
 	  ft_strcat.c              \

@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/18 01:50:30 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/18 04:58:55 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
+int					ft_sqrt(int n);
 char				*ft_strappend(char **s1, char **s2, char c);
 char				*ft_strappend_sec(char **s1, char **s2, char c);
 char				*ft_strcat(char *s1, const char *s2);
