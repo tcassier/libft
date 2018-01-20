@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/20 01:30:29 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/20 04:27:54 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct		s_print
 }					t_print;
 
 int					ft_atoi(const char *str);
+int					ft_atoi_sec(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_count_word(const char *s, int c);
 char				*ft_imaxtoa_base(intmax_t n, int base);

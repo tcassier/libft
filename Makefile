@@ -6,7 +6,7 @@
 #    By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/15 23:45:03 by tcassier          #+#    #+#              #
-#    Updated: 2018/01/20 01:19:24 by tcassier         ###   ########.fr        #
+#    Updated: 2018/01/20 04:27:41 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ CFLAGS = -Wall -Werror -Wextra -I$(INC_PATH)
 SRC_PATH = ./src/
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 SRC = ft_atoi.c                \
+	  ft_atoi_sec.c            \
 	  ft_bzero.c               \
 	  ft_count_word.c          \
 	  ft_imaxtoa_base.c        \
