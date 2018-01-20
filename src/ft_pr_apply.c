@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/03 16:24:11 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/18 08:33:51 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/20 01:17:04 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void		*ft_pr_apply(void *ret, t_print *data, t_list *chunk)
 	if (ft_strchr("sS", data->conv) && prec != -1 &&
 	chunk->content_size > (size_t)prec)
 		chunk->content_size = (size_t)prec;
-	else if (ft_strchr(CONV, data->conv) && !ft_strchr("sScCfF", data->conv))
+	else if (ft_strchr(CONV, data->conv) && !ft_strchr("sScC", data->conv))
 		ret = apply_int((char*)ret, data, chunk, data->option);
 	ret = !ret ? NULL : apply_width((char*)ret, data, chunk, data->option);
 	if (data->conv == 'X' && ret)

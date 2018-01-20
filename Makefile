@@ -6,7 +6,7 @@
 #    By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/15 23:45:03 by tcassier          #+#    #+#              #
-#    Updated: 2018/01/18 10:39:28 by tcassier         ###   ########.fr        #
+#    Updated: 2018/01/20 01:19:24 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,6 @@ SRC = ft_atoi.c                \
 	  ft_itoa_dst.c            \
 	  ft_itoa_base.c           \
 	  ft_lflen.c               \
-	  ft_lftoa.c               \
 	  ft_lstadd.c              \
 	  ft_lstadd_back.c         \
 	  ft_lstdel.c              \
@@ -66,7 +65,6 @@ SRC = ft_atoi.c                \
 	  ft_pr_apply.c            \
 	  ft_pr_convert.c          \
 	  ft_pr_flag.c             \
-	  ft_pr_float.c            \
 	  ft_pr_process.c          \
 	  ft_printf.c              \
 	  ft_putchar.c             \

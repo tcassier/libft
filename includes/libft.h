@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/18 10:09:16 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/20 01:30:29 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 
 # define BUFF_SIZE 4096
-# define CONV "sSpbdDioOfFuUxXcC"
+# define CONV "sSpbdDioOuUxXcC"
 # define FLAG "1234567890#-+ .lhjz*"
 
 enum { HASH, PLUS, MINUS, SPACE, ZERO, WIDTH, PREC, PREFIX };
@@ -63,7 +63,6 @@ char				*ft_itoa(int n);
 char				*ft_itoa_dst(char *dst, intmax_t n);
 char				*ft_itoa_base(int n, int base);
 size_t				ft_lflen(double n);
-char				*ft_lftoa(double n);
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstadd_back(t_list *alst, t_list *new);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
@@ -93,7 +92,6 @@ int					ft_nbrlen_uimax_base(uintmax_t n, int base);
 void				*ft_pr_apply(void *ret, t_print *data, t_list *chunk);
 void				*ft_pr_convert(t_print *data, t_list *chunk, va_list ap);
 void				ft_pr_flag(t_print *data, t_list *chunk, va_list ap);
-void				*ft_pr_float(t_print *data, t_list *chunk, va_list ap);
 void				ft_pr_getsize(t_print *data, t_list *chunk);
 void				ft_pr_process(t_list *lst, t_print *data, va_list ap);
 void				ft_pr_unicode(char str[5], int byte, wchar_t c);
@@ -107,6 +105,7 @@ void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
+int					ft_sprintf(char **str, const char *format, ...);
 int					ft_sqrt(int n);
 char				*ft_strappend(char **s1, char **s2, char c);
 char				*ft_strappend_sec(char **s1, char **s2, char c);

@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:16 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/18 10:39:02 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/20 01:21:01 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,6 @@ void		*ft_pr_convert(t_print *data, t_list *chunk, va_list ap)
 	ft_pr_getsize(data, chunk);
 	if (ft_strchr("sScC", data->conv))
 		ret = getstr(data, chunk, ap);
-	else if (ft_strchr("fF", data->conv))
-		ret = ft_pr_float(data, chunk, ap);
 	else
 		ret = getint(data, chunk, ap);
 	return (ret);
