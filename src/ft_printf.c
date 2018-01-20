@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 00:54:05 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/20 01:39:11 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/01/20 01:47:44 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int			ft_sprintf(char **str, const char *format, ...)
 			check = 0;
 			while (tmp)
 			{
-				ft_strnncat(*str + check, (char*)tmp->content, (int)tmp->content_size);
-				check += (int)tmp->content_size;
+				ft_strnncat(*str + check, tmp->content, tmp->content_size);
+				check += tmp->content_size;
 				tmp = tmp->next;
 			}
 		}
