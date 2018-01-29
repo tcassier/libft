@@ -36,7 +36,7 @@ static char	*get_unicode(wchar_t *wstr, t_list *chunk, int one, int prec)
 			break ;
 		wstr++;
 	}
-	chunk->content_size = one ? byte : ft_strlen(ret);
+	chunk->content_size = one ? (size_t)byte : ft_strlen(ret);
 	return (ret);
 }
 

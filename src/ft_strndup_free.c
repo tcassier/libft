@@ -14,11 +14,9 @@
 
 char		*ft_strndup_free(char **s1, size_t n)
 {
-	size_t	index;
 	char	*dest;
 	int		len;
 
-	index = 0;
 	len = ft_strlen((char*)(*s1)) >= n ? n : ft_strlen((char*)(*s1));
 	if (!(dest = ft_strnew(len)))
 	{
