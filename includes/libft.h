@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/02/15 16:32:44 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/02/15 20:57:55 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <unistd.h>
 
 # define BUFF_SIZE 4096
-# define CONV "sSpbdDioOuUxXcC"
+# define CONV "sSpbdDioOuUxXcCfF"
 # define FLAG "1234567890#-+ .lhjz*"
 
 enum { HASH, PLUS, MINUS, SPACE, ZERO, WIDTH, PREC, PREFIX };
@@ -65,9 +65,11 @@ int					ft_isprint(int c);
 int					ft_isspace(int c);
 int					ft_isupper(int c);
 char				*ft_itoa(int n);
-char				*ft_itoa_dst(char *dst, intmax_t n);
+int					ft_itoa_dst(char *dst, intmax_t n);
 char				*ft_itoa_base(int n, int base);
 size_t				ft_lflen(double n);
+int					ft_lfstrlen(char *str);
+char				*ft_lftoa(double n);
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstadd_back(t_list *alst, t_list *new);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
