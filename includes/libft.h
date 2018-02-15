@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/02/15 14:27:53 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/02/15 16:32:44 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <errno.h>
+# include <fcntl.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdarg.h>
@@ -50,6 +51,7 @@ int					ft_atoi(const char *str);
 int					ft_atoi_sec(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_count_word(const char *s, int c);
+t_list				*ft_getfile(char *file);
 char				*ft_imaxtoa_base(intmax_t n, int base);
 int					ft_dprintf(const int fd, const char *format, ...);
 int					ft_isalnum(int c);

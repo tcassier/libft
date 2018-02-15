@@ -6,7 +6,7 @@
 #    By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/15 23:45:03 by tcassier          #+#    #+#              #
-#    Updated: 2018/02/15 14:23:42 by tcassier         ###   ########.fr        #
+#    Updated: 2018/02/15 16:32:52 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC = ft_atoi.c                \
 	  ft_atoi_sec.c            \
 	  ft_bzero.c               \
 	  ft_count_word.c          \
+	  ft_getfile.c             \
 	  ft_imaxtoa_base.c        \
 	  ft_isalnum.c             \
 	  ft_isalpha.c             \
