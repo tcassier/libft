@@ -6,14 +6,16 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/01/20 04:27:54 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/02/15 14:27:53 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <errno.h>
 # include <stdint.h>
+# include <stdio.h>
 # include <stdarg.h>
 # include <stdlib.h>
 # include <string.h>
@@ -90,6 +92,7 @@ void				*ft_memset_sec(void *b, int c, size_t n);
 int					ft_nbrlen_base(int n, int base);
 int					ft_nbrlen_imax_base(intmax_t n, int base);
 int					ft_nbrlen_uimax_base(uintmax_t n, int base);
+void				ft_perror(const char *s);
 void				*ft_pr_apply(void *ret, t_print *data, t_list *chunk);
 void				*ft_pr_convert(t_print *data, t_list *chunk, va_list ap);
 void				ft_pr_flag(t_print *data, t_list *chunk, va_list ap);
