@@ -6,7 +6,7 @@
 #    By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/15 23:45:03 by tcassier          #+#    #+#              #
-#    Updated: 2018/02/15 20:58:15 by tcassier         ###   ########.fr        #
+#    Updated: 2018/02/19 15:54:25 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,8 @@ SRC = ft_atoi.c                \
 	  ft_uimaxtoa_base.c       \
 	  ft_wchar_byte.c          \
 	  ft_wstrlen.c             \
-	  get_next_line.c
+	  get_next_line.c          \
+	  gnl_free.c
 
 OBJ_PATH = ./obj/
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))

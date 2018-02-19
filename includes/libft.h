@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/02/15 20:57:55 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/02/19 15:54:13 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,4 +160,5 @@ char				*ft_uimaxtoa_base(uintmax_t n, int base);
 int					ft_wchar_byte(wchar_t c);
 size_t				ft_wstrlen(wchar_t *wstr);
 int					get_next_line(const int fd, char **line);
+int					gnl_free(t_list **begin_list);
 #endif

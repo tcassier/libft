@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   gnl_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/12 19:28:36 by tcassier          #+#    #+#             */
-/*   Updated: 2018/02/19 15:54:36 by tcassier         ###   ########.fr       */
+/*   Created: 2018/02/19 15:48:47 by tcassier          #+#    #+#             */
+/*   Updated: 2018/02/19 15:53:27 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void*, size_t))
+int		gnl_free(t_list **begin_list)
 {
-	if ((*alst)->next != NULL)
-		ft_lstdel(&(*alst)->next, del);
-	ft_lstdelone(alst, del);
+	if (*begin_list)
+		ft_lstdel(begin_list, &ft_memdel_bis);
+	return (-1);
 }
