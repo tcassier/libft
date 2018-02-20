@@ -6,7 +6,7 @@
 #    By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/15 23:45:03 by tcassier          #+#    #+#              #
-#    Updated: 2018/02/19 15:54:25 by tcassier         ###   ########.fr        #
+#    Updated: 2018/02/20 06:19:12 by tcassier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,7 @@ SRC = ft_atoi.c                \
 	  ft_wchar_byte.c          \
 	  ft_wstrlen.c             \
 	  get_next_line.c          \
+	  get_next_line_bis.c      \
 	  gnl_free.c
 
 OBJ_PATH = ./obj/
