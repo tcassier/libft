@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 19:42:52 by tcassier          #+#    #+#             */
-/*   Updated: 2018/02/20 06:18:35 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/02/21 19:34:28 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,14 +114,14 @@ int					get_next_line_bis(const int fd, char **line)
 
 	if ((!line || fd < 0) || !(file = check_fd(&begin_list, (size_t)fd)) ||
 	!(check = rest_instance(file, line)))
-		return (gnl_free(&begin_list));
+		return (gnl_free(line, &begin_list, 0));
 	if (check == 1)
 		return (1);
 	while ((check = read(fd, buffer, BUFF_SIZE)) > 0)
 	{
 		buffer[check] = '\0';
 		if (!(check = get_line(buffer, file, line)) || check == 1)
-			return (check == 0 ? -1 : 1);
+			return (gnl_free(line, &begin_list, check));
 	}
 	if (*line && *line[0] != '\0')
 		return (1);
@@ -130,5 +130,5 @@ int					get_next_line_bis(const int fd, char **line)
 		ft_strdel(line);
 		return (0);
 	}
-	return (gnl_free(&begin_list));
+	return (gnl_free(line, &begin_list, 0));
 }

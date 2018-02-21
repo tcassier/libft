@@ -6,11 +6,22 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 19:42:52 by tcassier          #+#    #+#             */
-/*   Updated: 2018/02/20 06:19:42 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/02/21 19:29:45 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int			gnl_free_bis(char **line, char **rest, int check)
+{
+	if (!check)
+	{
+		if (line && *line)
+			ft_strdel(line);
+		ft_strdel(rest);
+	}
+	return (check == 0 ? -1 : 1);
+}
 
 static size_t		rest_instance(char *rest, char **line)
 {
@@ -87,17 +98,14 @@ int					get_next_line(const int fd, char **line)
 	int				check;
 
 	if ((!line || fd < 0) || !(check = rest_instance(rest, line)))
-	{
-		free(rest);
-		return (-1);
-	}
+		return (gnl_free_bis(line, &rest, 0));
 	if (check == 1)
 		return (1);
 	while ((check = read(fd, buffer, BUFF_SIZE)) > 0)
 	{
 		buffer[check] = '\0';
 		if (!(check = get_line(buffer, rest, line)) || check == 1)
-			return (check == 0 ? -1 : 1);
+			return (gnl_free_bis(line, &rest, check));
 	}
 	if (*line && *line[0] != '\0')
 		return (1);
@@ -106,5 +114,5 @@ int					get_next_line(const int fd, char **line)
 		ft_strdel(line);
 		return (0);
 	}
-	return (-1);
+	return (gnl_free_bis(line, &rest, 0));
 }
