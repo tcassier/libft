@@ -15,20 +15,11 @@
 char		*ft_itoa(int n)
 {
 	int		length;
-	int		tmp_n;
 	int		sign;
 	char	*str;
 
-	length = 1;
-	sign = 1;
-	tmp_n = n;
-	while (tmp_n /= 10)
-		length++;
-	if (n < 0)
-	{
-		sign = -1;
-		length++;
-	}
+	length = ft_nbrlen_base(n, 10);
+	sign = n < 0 ? -1 : 1;
 	if (!(str = ft_strnew(length)))
 		return (NULL);
 	while (length--)

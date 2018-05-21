@@ -14,7 +14,7 @@ int		ft_nbrlen_base(int n, int base)
 {
 	int	len;
 
-	len = 0;
+	len = 1;
 	if (n == 0)
 		return (1);
 	if (n < 0)
@@ -22,10 +22,7 @@ int		ft_nbrlen_base(int n, int base)
 		n = -n;
 		len++;
 	}
-	while (n > 0)
-	{
-		n /= base;
+	while (n /= base)
 		len++;
-	}
 	return (len);
 }

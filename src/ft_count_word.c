@@ -10,23 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int			ft_count_word(char const *s, char c)
+int		ft_count_word(char const *s, char c)
 {
-	int		count;
-	int		begin_word;
+	int	count;
 
-	begin_word = 0;
 	count = 0;
-	while (*s != '\0')
+	while (*s)
 	{
-		if (begin_word == 1 && *s == c)
-			begin_word = 0;
-		if (begin_word == 0 && *s != c)
-		{
-			begin_word = 1;
+		while (*s == c && *s)
+			s++;
+		if (*s)
 			count++;
-		}
-		s++;
+		while (*s != c && *s)
+			s++;
 	}
 	return (count);
 }

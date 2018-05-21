@@ -20,14 +20,13 @@ char		*ft_itoa_base(int n, int base)
 	if (n == 0)
 		return (ft_strdup("0"));
 	len = ft_nbrlen_base(n, base);
-	if (!(str = ft_strnew(len)))
+	if (!(str = ft_strnew(len--)))
 		return (NULL);
 	if (n < 0)
 	{
 		str[0] = '-';
 		n = -n;
 	}
-	str[len--] = '\0';
 	while (n > 0)
 	{
 		if (n % base < 10)
