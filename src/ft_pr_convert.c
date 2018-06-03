@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:16 by tcassier          #+#    #+#             */
-/*   Updated: 2018/02/15 21:11:54 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/06/03 20:54:07 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*get_unicode(wchar_t *wstr, t_list *chunk, int one, int prec)
 	int		byte;
 
 	str[4] = '\0';
-	ret = ft_strnew(ft_wstrlen(wstr));
+	ret = ft_strnew(one == 1 ? ft_wchar_byte(*wstr) : ft_wstrlen(wstr));
 	while ((one || *wstr) && ret)
 	{
 		if ((byte = ft_wchar_byte(*wstr)) == -1)
