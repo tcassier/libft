@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl_free.c                                         :+:      :+:    :+:   */
+/*   ft_gnl_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 15:48:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/03/16 16:18:47 by tcassier         ###   ########.fr       */
+/*   Created: 2018/06/05 00:28:20 by tcassier          #+#    #+#             */
+/*   Updated: 2018/06/05 00:28:29 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		gnl_free(char **line, t_list **begin_list, int check)
+int		ft_gnl_free(char **line, t_list **begin_list, int check)
 {
 	if (!check)
 	{

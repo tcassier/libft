@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcassier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/12 19:42:52 by tcassier          #+#    #+#             */
-/*   Updated: 2018/03/16 16:18:37 by tcassier         ###   ########.fr       */
+/*   Created: 2018/06/05 00:27:33 by tcassier          #+#    #+#             */
+/*   Updated: 2018/06/05 00:28:10 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static size_t		get_line(char *buffer, t_list *file, char **line)
 	return (ret);
 }
 
-int					get_next_line(const int fd, char **line)
+int					ft_get_next_line(const int fd, char **line)
 {
 	static t_list	*begin_list = NULL;
 	t_list			*file;
@@ -114,14 +114,14 @@ int					get_next_line(const int fd, char **line)
 
 	if ((!line || fd < 0) || !(file = check_fd(&begin_list, (size_t)fd)) ||
 	!(check = rest_instance(file, line)))
-		return (gnl_free(line, &begin_list, 0));
+		return (ft_gnl_free(line, &begin_list, 0));
 	if (check == 1)
 		return (1);
 	while ((check = read(fd, buffer, BUFF_SIZE)) > 0)
 	{
 		buffer[check] = '\0';
 		if (!(check = get_line(buffer, file, line)) || check == 1)
-			return (gnl_free(line, &begin_list, check));
+			return (ft_gnl_free(line, &begin_list, check));
 	}
 	if (*line && *line[0] != '\0')
 		return (1);
@@ -130,5 +130,5 @@ int					get_next_line(const int fd, char **line)
 		ft_strdel(line);
 		return (0);
 	}
-	return (gnl_free(line, &begin_list, 0));
+	return (ft_gnl_free(line, &begin_list, 0));
 }

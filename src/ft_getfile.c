@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:49:18 by tcassier          #+#    #+#             */
-/*   Updated: 2018/02/15 16:46:39 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/06/05 00:28:53 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	get_file(int fd, t_list **begin_list)
 	int		ret;
 
 	ret = 0;
-	while (ret != -1 && (ret = get_next_line(fd, &line)) > 0)
+	while (ret != -1 && (ret = ft_get_next_line(fd, &line)) > 0)
 	{
 		if ((new = ft_lstnew(NULL, 0)))
 		{

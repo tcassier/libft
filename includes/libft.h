@@ -6,7 +6,7 @@
 /*   By: tcassier <tcassier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 20:02:47 by tcassier          #+#    #+#             */
-/*   Updated: 2018/06/03 20:55:40 by tcassier         ###   ########.fr       */
+/*   Updated: 2018/06/05 00:30:37 by tcassier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ int					ft_atoi(const char *str);
 int					ft_atoi_sec(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_count_word(const char *s, int c);
+int					ft_get_next_line(const int fd, char **line);
 t_list				*ft_getfile(char *file);
+int					ft_gnl_free(char **line, t_list **begin_list, int check);
 char				*ft_imaxtoa_base(intmax_t n, int base);
 int					ft_dprintf(const int fd, const char *format, ...);
 int					ft_isalnum(int c);
@@ -160,6 +162,4 @@ int					ft_toupper(int c);
 char				*ft_uimaxtoa_base(uintmax_t n, int base);
 int					ft_wchar_byte(wchar_t c);
 size_t				ft_wstrlen(wchar_t *wstr);
-int					get_next_line(const int fd, char **line);
-int					gnl_free(char **line, t_list **begin_list, int check);
 #endif
